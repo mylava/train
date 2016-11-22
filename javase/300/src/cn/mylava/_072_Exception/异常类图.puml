@@ -1,0 +1,18 @@
+@startuml
+
+class Object{
+}
+class Throwable{
+}
+class Error{
+}
+class Exception{
+}
+Object <|-- Throwable
+Throwable <|-- Error
+Throwable <|-- Exception
+class RuntimeException{
+}
+Exception <|-- RuntimeException
+
+@enduml
