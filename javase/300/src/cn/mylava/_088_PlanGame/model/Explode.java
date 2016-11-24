@@ -1,6 +1,7 @@
 package cn.mylava._088_PlanGame.model;
 
-import util.GameUtil;
+
+import cn.mylava._088_PlanGame.util.GameUtil;
 
 import java.awt.*;
 
