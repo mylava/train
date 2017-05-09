@@ -53,7 +53,7 @@ public class FileTree {
         }
     }
     //搜索文件
-    public static List<File> searchFile(File directory, String fileName, final List<File> list) {
+    public static List<File> searchFile(final File directory, final String fileName, final List<File> list) {
         //如果是目录
         if (directory.isDirectory()) {
             File[] files = directory.listFiles(new FilenameFilter() {
