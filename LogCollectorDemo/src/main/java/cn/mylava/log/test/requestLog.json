@@ -1,0 +1,29 @@
+{
+  "cn.mylava.log.bean.RequestLog": {
+    "appInfo": "",
+    "clientIp": "127.0.0.1",
+    "contentPath": "/log",
+    "cookie": "JSESSIONID=611C80D973781078D07B299163D281BB",
+    "host": "localhost:8080",
+    "id": "8897700955121786143",
+    "invokeTree": "HelloController.greeting",
+    "localHostName": "MacBook.lan",
+    "localIp": "192.168.199.135",
+    "logType": "API_REQUEST",
+    "method": "GET",
+    "msName": "KOULIANG_API",
+    "now": 1496405747829,
+    "params": {
+      "name": [
+        "张三"
+      ]
+    },
+    "queryString": "name=张三",
+    "requestURI": "/log/hello",
+    "requestURL": "http://localhost:8080/log/hello",
+    "serverName": "localhost",
+    "servletPath": "/hello",
+    "sessionId": "611C80D973781078D07B299163D281BB",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36"
+  }
+}
