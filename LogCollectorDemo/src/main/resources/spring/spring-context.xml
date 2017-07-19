@@ -4,32 +4,35 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
-        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
     <context:component-scan base-package="cn.mylava.business" />
 
     <mvc:annotation-driven></mvc:annotation-driven>
 
- <!--   <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <mvc:exclude-mapping path="/check.html"/>
-            <bean class="cn.mylava.interceptor.LogInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>-->
-    <bean id="controllerLogger" class="cn.mylava.log.aspect.ControllerLogger"/>
-    <bean id="serviceLogger" class="cn.mylava.log.aspect.ServiceLogger"/>
+    <bean id="webLogger" class="com.ruwe.collectlog.aspect.WebLogger" >
+        <property name="msName" value="KOULIANG_API" />
+        <property name="logType" value="API" />
+
+    </bean>
+    <bean id="commonLogger" class="com.ruwe.collectlog.aspect.CommonLogger" >
+        <property name="msName" value="USER_CENTER" />
+        <property name="logType" value="PROCESS" />
+    </bean>
     <aop:config>
-        <aop:aspect id="controllerAspect" ref="controllerLogger">
-            <aop:pointcut id="controllerLog" expression="@annotation(org.springframework.web.bind.annotation.RequestMapping)"/>
-            <aop:around method="record" pointcut-ref="controllerLog"/>
+        <aop:aspect id="webLogAspect" ref="webLogger" order="100">
+            <aop:pointcut id="webLog" expression="@annotation(org.springframework.web.bind.annotation.RequestMapping)"/>
+            <aop:around method="record" pointcut-ref="webLog"/>
         </aop:aspect>
-        <aop:aspect id="serviceAspect" ref="serviceLogger">
-            <aop:pointcut id="serviceLog" expression="execution(* cn.mylava.business.service.*.*(..))"/>
-            <aop:around method="record" pointcut-ref="serviceLog"/>
+        <aop:aspect id="commonLogAspect" ref="commonLogger">
+            <aop:pointcut id="commonLog" expression="execution(* cn.mylava.business.service.*.*(..))"/>
+            <aop:around method="record" pointcut-ref="commonLog"/>
         </aop:aspect>
     </aop:config>
 
@@ -39,4 +42,18 @@
         <property name="prefix" value="/WEB-INF/views" />
         <property name="suffix" value=".jsp" />
     </bean>
+
+    <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+    <!--<dubbo:application name="service_consumer" />
+
+     <dubbo:registry address="multicast://224.5.6.7:1234" />
+
+    <dubbo:annotation package="cn.mylava.business.web" />
+
+    &lt;!&ndash;使用zookeeper注册中心暴露服务地址 &ndash;&gt;
+    <dubbo:registry address="zookeeper://192.168.24.213:2181" />
+
+    &lt;!&ndash;生成远程服务代理，可以像使用本地bean一样使用demoService &ndash;&gt;
+    <dubbo:reference id="dbService" interface="cn.mylava.dependency.service.DBService" />-->
+
 </beans>

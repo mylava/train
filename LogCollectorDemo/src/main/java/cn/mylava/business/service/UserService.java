@@ -1,6 +1,6 @@
 package cn.mylava.business.service;
 
-import cn.mylava.business.model.User;
+import cn.mylava.dependency.beans.User;
 
 /**
  * Created by lipengfei on 2017/5/27.

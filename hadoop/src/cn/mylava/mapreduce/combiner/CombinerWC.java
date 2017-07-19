@@ -43,6 +43,5 @@ public class CombinerWC {
 
         //6.提交任务
         job.waitForCompletion(true);
-
     }
 }

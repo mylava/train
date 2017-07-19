@@ -17,17 +17,17 @@
 
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %c [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern> %d{yyyy-MM-dd HH:mm:ss.SSS} %c [%thread] %-5level %logger{36} - %msg%n</pattern>
             <charset>UTF-8</charset>
         </encoder>
 
     </appender>
 
-    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${CATALINA_BASE}/logs/error.log</file>
+    <appender name="ERR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${CATALINA_BASE}/applogs/error.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- daily rollover -->
-            <fileNamePattern>${CATALINA_BASE}/logs/error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>${CATALINA_BASE}/applogs/error.%d{yyyy-MM-dd}.log</fileNamePattern>
             <!-- keep 30 days' worth of history -->
             <maxHistory>7</maxHistory>
         </rollingPolicy>
@@ -41,11 +41,24 @@
             <onMismatch>DENY</onMismatch>
         </filter>
     </appender>
-    <appender name="web" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${CATALINA_BASE}/logs/ht_web_access.out</file>
+    <appender name="API" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${CATALINA_BASE}/applogs/web_access.out</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- daily rollover -->
-            <fileNamePattern>${CATALINA_BASE}/logs/ht_web_access_%d{yyyyMMddHH}.log</fileNamePattern>
+            <fileNamePattern>${CATALINA_BASE}/applogs/web_access_%d{yyyyMMddHH}.log</fileNamePattern>
+            <!-- keep 30 days'
+             worth of history -->
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="COM" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${CATALINA_BASE}/applogs/common_access.out</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${CATALINA_BASE}/applogs/common_%d{yyyyMMddHH}.log</fileNamePattern>
             <!-- keep 30 days' worth of history -->
             <maxHistory>7</maxHistory>
         </rollingPolicy>
@@ -54,10 +67,10 @@
         </encoder>
     </appender>
     <appender name="ALL" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${CATALINA_BASE}/logs/all.log</file>
+        <file>${CATALINA_BASE}/applogs/all.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- daily rollover -->
-            <fileNamePattern>${CATALINA_BASE}/logs/all.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>${CATALINA_BASE}/applogs/all.%d{yyyy-MM-dd}.log</fileNamePattern>
             <!-- keep 30 days' worth of history -->
             <maxHistory>30</maxHistory>
         </rollingPolicy>
@@ -68,17 +81,23 @@
     <root level="DEBUG">
         <appender-ref ref="stdout" />
         <appender-ref ref="ALL"/>
-        <appender-ref ref="ERROR"/>
+        <appender-ref ref="ERR"/>
+        <appender-ref ref="WEB"/>
+        <appender-ref ref="COMMON"/>
     </root>
     <!--能用日志配置-->
-    <logger name="cn.mylava.business" level="INFO" additivity="false">
+    <logger name="WEB" level="INFO" additivity="false">
         <appender-ref ref="stdout"/>
-        <appender-ref ref="web"/>
+        <appender-ref ref="API"/>
     </logger>
-    <logger name="ERROR" level="INFO" additivity="false">
-        <appender-ref ref="ERROR"/>
+    <logger name="COMMON" level="INFO" additivity="false">
         <appender-ref ref="stdout"/>
+        <appender-ref ref="COM"/>
     </logger>
+    <!--<logger name="ERROR" level="INFO" additivity="false">
+        <appender-ref ref="ERR"/>
+        <appender-ref ref="stdout"/>
+    </logger>-->
     <logger name="org.springframework" level="WARN">
     </logger>
     <logger name="org.apache" level="WARN">

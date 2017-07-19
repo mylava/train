@@ -32,7 +32,6 @@ public class TestBreakContinue {
 
 
         System.out.println("***********\t带标签的break或continue\t****************");
-        int count = 0;
         outer:for(int i=101;i<150;i++){
             for(int j=2;j<i/2;j++){
                 if(i%j==0){

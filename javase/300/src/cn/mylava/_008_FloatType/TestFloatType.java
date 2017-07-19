@@ -7,7 +7,7 @@ package cn.mylava._008_FloatType;
 public class TestFloatType {
     public static void main(String[] args){
         double d = 3.14;   //浮点类型常量默认为double类型
-        float f = 6.28f;
+        float f = 3.14f;
         double d2 = 314e-2;
         System.out.println(d);
         System.out.println(f);

@@ -7,9 +7,9 @@ package cn.mylava._007_DataType;
 public class TestDataType {
     public static void main(String[] args){
         int a= 10;
-        byte b = 20;
+        byte b = 127;
         int a2 = 010; //8进制
-        int a3 = 0x10;//16进制
+        int a3 = 0x12;//16进制
         System.out.println(a);
         System.out.println(b);
         System.out.println(a2);

@@ -26,7 +26,7 @@ public class TestCast {
         int i2 = -100;
         char c3 = (char) i2;
         int i3 = c3;
-        System.out.println(c3); //超过char的表叔范围，转换成一个无意义的值(打印出来的是一个乱码)
+        System.out.println(c3); //超过char的表述范围，转换成一个无意义的值(打印出来的是一个乱码)
 
 
         /**

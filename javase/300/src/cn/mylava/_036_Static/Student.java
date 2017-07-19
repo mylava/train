@@ -14,7 +14,7 @@ public class Student {
 
     public static void main(String[] args) {
         /**
-         * 静态变量/方法也叫类变量/方法,在内存中存在于对内存的方法区的类信息中.
+         * 静态变量/方法也叫类变量/方法,在内存中存在于堆内存的方法区的类信息中.
          */
         Student.ss=23;
         Student.printSS();
