@@ -23,7 +23,7 @@
     </bean>
     <bean id="commonLogger" class="com.ruwe.collectlog.aspect.CommonLogger" >
         <property name="msName" value="USER_CENTER" />
-        <property name="logType" value="PROCESS" />
+        <property name="logType" value="HANDLER" />
     </bean>
     <aop:config>
         <aop:aspect id="webLogAspect" ref="webLogger" order="100">
@@ -31,7 +31,7 @@
             <aop:around method="record" pointcut-ref="webLog"/>
         </aop:aspect>
         <aop:aspect id="commonLogAspect" ref="commonLogger">
-            <aop:pointcut id="commonLog" expression="execution(* cn.mylava.business.service.*.*(..))"/>
+            <aop:pointcut id="commonLog" expression="execution(* cn.mylava.business.service..*.*(..))"/>
             <aop:around method="record" pointcut-ref="commonLog"/>
         </aop:aspect>
     </aop:config>

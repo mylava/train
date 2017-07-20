@@ -1,36 +1,18 @@
 {
-  "用户信息--------1": {
-    "1\n\n": {
-      "birthday": "2017-07-19 18:46:57",
+  "com.ruwe.collectlog.model.CommonLog": {
+    "id": "887972485901844480",
+    "invokeTree": "cn.mylava.business.web.HelloController.greeting->cn.mylava.business.service.impl.UserServiceImpl.getUser",
+    "localHostName": "macbook.lan",
+    "localIp": "192.168.199.112",
+    "logType": "HANDLER_RESPONSE",
+    "msName": "USER_CENTER",
+    "now": 1500544144111,
+    "params": [],
+    "result": {
+      "birthday": "2017-07-20 17:49:04",
       "id": 1,
       "name": "张三",
-      "registrationTime": 1500461217002
+      "registrationTime": 1500544144053
     }
-  },
-  "com.ruwe.collectlog.model.BaseLog": {
-    "id": "887624793690472448",
-    "invokeTree": {
-      "curNode": {
-        "childNodes": [
-          {
-            "deep": 1,
-            "invokeCount": 1,
-            "invokeMethod": "cn.mylava.business.service.impl.UserServiceImpl.getUser",
-            "parentNode": {
-              "$ref": "$.com.ruwe.collectlog.model.BaseLog.invokeTree.curNode"
-            }
-          }
-        ],
-        "deep": 0,
-        "invokeCount": 1,
-        "invokeMethod": "cn.mylava.business.web.HelloController.greeting"
-      },
-      "rootNode": {
-        "$ref": "$.com.ruwe.collectlog.model.BaseLog.invokeTree.curNode"
-      }
-    },
-    "localHostName": "macbook.lan",
-    "localIp": "192.168.199.104",
-    "logType": "CUSTOM_INFO"
   }
 }
